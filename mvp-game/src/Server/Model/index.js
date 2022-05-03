@@ -1,9 +1,9 @@
 const db = require('../../DB/index.js');
-const Character = require('../../DB/schema.js');
+const {Character} = require('../../DB/schema.js');
 
 const createData = async (params) => {
   try {
-    db.collection('Character').insertOne({
+    db.collection('characters').insertOne({
       name: params.name,
       level: 0,
       experience: 0,
@@ -13,20 +13,23 @@ const createData = async (params) => {
   }
 }
 
-const retrieveCharacters = async (res) => {
-  const query = Character.find({});
-  query.exec((error, data) => {
-    if (error) {
-      return error;
-    }
-    console.log(data)
-    res.send(data);
-  })
+const deleteCharacter = async (params) => {
+  console.log(params)
+  try {
+    Character.find({_id: params}).deleteOne().exec()
+  } catch (error) {
+    return error;
+  }
+}
+
+const retrieveCharacters = () => {
+  return Character.find({});
 }
 
 
 
 module.exports = {
   createData,
-  retrieveCharacters
+  retrieveCharacters,
+  deleteCharacter,
 }

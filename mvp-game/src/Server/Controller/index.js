@@ -10,19 +10,30 @@ const create = async (req, res) => {
   })
 }
 
-const retrieve = async (req, res) => {
-  console.log('inside retrieve controller')
-  await model.retrieveCharacters()
+const deleteOne = async (req, res) => {
+  console.log(req, 'delete data')
+  await model.deleteCharacter(req.body._id)
   .then((response) => {
-    console.log(response, 'response inside controller retreive')
+    res.status(200).send('Character Deleted');
   })
   .catch((error) => {
-    console.log(error, 'error inside controller retrieve')
+    res.status(404).send(error)
+  })
+}
+
+const retrieve = async (req, res) => {
+  await model.retrieveCharacters()
+  .then((response) => {
+    res.send(response);
+  })
+  .catch((error) => {
+    res.status(400).send(error);
   })
 }
 
 
 module.exports = {
   create,
-  retrieve
+  retrieve,
+  deleteOne,
 }

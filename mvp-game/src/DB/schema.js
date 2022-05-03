@@ -5,11 +5,13 @@ mongoose.Promise = global.Promise;
 const characterData = new mongoose.Schema({
   // design schema
   level: {type: Number, default: 0},
-  name: {type: String, unique: true, dropDups: true},
+  name: String,
   experience: {type: Number, default: 0},
+  health: {type: Number, default: 50},
+  attack: {type: Number, default: 5},
 })
 
 
 const Character = mongoose.model('Character', characterData);
 
-module.exports = (Character)
+module.exports = {Character}

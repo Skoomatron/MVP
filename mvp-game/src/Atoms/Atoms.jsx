@@ -10,7 +10,7 @@ export const characterName = atom({
   default: '',
 })
 
-export const allCharacters =  atom({
-  key: 'allCharacters',
+export const currentCharacter =  atom({
+  key: 'currentCharacter',
   default: {},
 })
