@@ -8,9 +8,9 @@ const db = require('../../DB/index.js');
 //   return results;
 // }
 
-const testing = async () => {
-  console.log('huh')
-}
+// const testing = async () => {
+//   console.log('huh')
+// }
 
 module.exports = {
   // saveData,

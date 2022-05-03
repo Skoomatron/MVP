@@ -3,12 +3,11 @@ const db = require('./index.js');
 
 const characterData = new mongoose.Schema({
   // design schema
-  level: Number,
+  level: {type: Number, default: 0},
   name: String,
-  experience: Number,
+  experience: {type: Number, default: 0},
 })
 
 const Character = mongoose.model('Character', characterData);
-
 
 module.exports = {Character};

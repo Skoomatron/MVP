@@ -10,15 +10,15 @@ const model = require('../Model/index.js');
 //   })
 // }
 
-const test = async (req, res) => {
-  await model.testing()
-  .then((response) => {
-    console.log('working')
-  })
-  .catch((error) => {
-    console.log('error in test')
-  })
-}
+// const test = async (req, res) => {
+//   await model.testing()
+//   .then((response) => {
+//     console.log('working')
+//   })
+//   .catch((error) => {
+//     console.log('error in test')
+//   })
+// }
 
 module.exports = {
   // save,

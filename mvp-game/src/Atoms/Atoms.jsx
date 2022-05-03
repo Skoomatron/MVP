@@ -1,6 +1,11 @@
 import {atom} from 'recoil';
 
-export const test = atom({
-  key: 'test',
-  default: 'blue',
+export const changeView = atom({
+  key: 'changeView',
+  default: 'title',
+})
+
+export const characterName= atom({
+  key: 'characterName',
+  default: '',
 })
