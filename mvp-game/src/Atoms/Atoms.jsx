@@ -5,7 +5,12 @@ export const changeView = atom({
   default: 'title',
 })
 
-export const characterName= atom({
+export const characterName = atom({
   key: 'characterName',
   default: '',
+})
+
+export const allCharacters =  atom({
+  key: 'allCharacters',
+  default: {},
 })

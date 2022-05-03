@@ -1,10 +1,29 @@
-import React from 'react';
-import {changeView} from '../../Atoms/Atoms.jsx';
+import React, {useEffect} from 'react';
+import {changeView, allCharacters} from '../../Atoms/Atoms.jsx';
 import {useRecoilState} from 'recoil';
+import axios from 'axios';
 
 const LoadScreen = () => {
 
   const [viewValue, setView] = useRecoilState(changeView);
+  const [charactersValue, setCharacters] = useRecoilState(changeView);
+
+  useEffect(() => {
+    getCharacters();
+  }, []);
+
+  const getCharacters = () => {
+    const characters = axios.get('/retrieve')
+    .then((response) => {
+      console.log(response, 'this is response in getCharacters')
+      setCharacters(response.body)
+      console.log(charactersValue)
+    })
+    .catch((error) => {
+      console.log(error, 'error in getCharacters')
+    })
+
+  }
 
   const clickHandler = () => {
     setView('battle')

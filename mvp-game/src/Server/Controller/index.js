@@ -1,26 +1,28 @@
 const model = require('../Model/index.js');
 
-// const save = async (req, res) => {
-//   await model.saveData(req.params)
-//   .then((response) => {
-//     console.log('test in controller save')
-//   })
-//   .catch((error) => {
-//     console.log('error in controller save')
-//   })
-// }
+const create = async (req, res) => {
+  await model.createData(req.body)
+  .then((response) => {
+    res.status(201).send('Character Created');
+  })
+  .catch((error) => {
+    res.status(409).send(error)
+  })
+}
 
-// const test = async (req, res) => {
-//   await model.testing()
-//   .then((response) => {
-//     console.log('working')
-//   })
-//   .catch((error) => {
-//     console.log('error in test')
-//   })
-// }
+const retrieve = async (req, res) => {
+  console.log('inside retrieve controller')
+  await model.retrieveCharacters()
+  .then((response) => {
+    console.log(response, 'response inside controller retreive')
+  })
+  .catch((error) => {
+    console.log(error, 'error inside controller retrieve')
+  })
+}
+
 
 module.exports = {
-  // save,
-  // test,
+  create,
+  retrieve
 }

@@ -7,7 +7,7 @@ require('dotenv').config();
 const app = express();
 
 app.use(express.json());
-app.use(router);
+app.use('/', router);
 app.use(compression({threshold: 0, level: 9}));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../../dist')));
