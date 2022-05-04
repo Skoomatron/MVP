@@ -14,10 +14,9 @@ const createData = async (params) => {
 }
 
 const gainExp = async (params) => {
+  console.log(params, 'there are params')
   try {
-    db.collection('characters').findOneAndUpdate({
-      experience:
-    })
+    await Character.findOneAndUpdate({_id: params._id}, {$inc: {experience: params.experience}}, {new: true})
   } catch (error) {
     return error;
   }

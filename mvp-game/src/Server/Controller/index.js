@@ -21,9 +21,7 @@ const deleteOne = async (req, res) => {
 }
 
 const gain = async (req, res) => {
-  console.log('here')
-  console.log(req, 'this is controller req')
-  await model.gainExp(req.body.experience)
+  await model.gainExp(req.body)
   .then((response) => {
     res.status(200).send('Earned a boosted')
   })

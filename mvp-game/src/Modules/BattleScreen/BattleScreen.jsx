@@ -26,6 +26,7 @@ const BattleScreen = () => {
     if (enemyHealthValue <= 0) {
       axios.post('/gain', {_id: currentCharValue._id, experience: monsters[0].experience})
       .then((response) => {
+        console.log(currentCharValue.experience, 'this is experience')
         console.log('response in level up')
       })
       .catch((error) => {
