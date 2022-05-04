@@ -30,6 +30,16 @@ const gain = async (req, res) => {
   })
 }
 
+const level = async (req, res) => {
+  await model.gainLevel(req.body)
+  .then((response) => {
+    res.status(200).send('Earned a boosted')
+  })
+  .catch((error) => {
+    res.status(404).send(error)
+  })
+}
+
 const retrieve = async (req, res) => {
   await model.retrieveCharacters()
   .then((response) => {
@@ -46,4 +56,5 @@ module.exports = {
   retrieve,
   deleteOne,
   gain,
+  level,
 }

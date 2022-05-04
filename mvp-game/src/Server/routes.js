@@ -6,6 +6,8 @@ console.log('made it to the router')
 router.post('/create', controller.create);
 router.post('/delete', controller.deleteOne);
 router.post('/gain', controller.gain);
+router.post('/level', controller.level);
+
 router.get('/retrieve', controller.retrieve);
 
 module.exports = router;

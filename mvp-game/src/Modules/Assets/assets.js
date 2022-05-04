@@ -1,14 +1,28 @@
-export const images = [
-  'https://www.pikpng.com/pngl/b/198-1988064_starbound-custom-character-fox-mccloud-by-gabeexists-da7z4mo.png',
-
-]
 
 export const monsters = [
   {
-    name: 'Eye Doofus',
-    health: 10,
-    level: 1,
-    experience: 10,
-    attack: 4,
+    level1: [
+      {
+        name: 'Eye Doofus',
+        health: 10,
+        experience: 10,
+        attack: 4,
+        color: 'red',
+      },
+      {
+        name: 'BlorgoSphere',
+        health: 20,
+        experience: 15,
+        attack: 8,
+        color: 'chartreuse',
+      },
+      {
+        name: 'Leftover Pasta',
+        health: 15,
+        experience: 12,
+        attack: 6,
+        color: 'orange',
+      }
+    ]
   }
 ]

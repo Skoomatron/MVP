@@ -14,9 +14,16 @@ const createData = async (params) => {
 }
 
 const gainExp = async (params) => {
-  console.log(params, 'there are params')
   try {
     await Character.findOneAndUpdate({_id: params._id}, {$inc: {experience: params.experience}}, {new: true})
+  } catch (error) {
+    return error;
+  }
+}
+
+const gainLevel = async (params) => {
+  try {
+    await Character.findOneAndUpdate({_id: params._id}, {$inc: {experience: -100, level: 1, health: params.health, attack: params.attack}}, {new: true})
   } catch (error) {
     return error;
   }
@@ -42,4 +49,5 @@ module.exports = {
   retrieveCharacters,
   deleteCharacter,
   gainExp,
+  gainLevel,
 }

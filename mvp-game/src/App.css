@@ -1,7 +1,32 @@
-* {
-  margin-top: 0px;
+
+:root {
+  --pixel-size: 6;
 }
 
+.pixelart {
+  image-rendering: pixelated;
+}
 
+.character {
+  width: calc(256px * var(--pixel-size));
+  height: calc(224px * var(--pixel-size));
+  overflow: hidden;
+  position: relative;
+}
+
+.characterSheet {
+  animation: moveSprite 1s steps(3) infinite;
+  width: calc(768px * var(--pixel-size));
+  height: calc(672px * var(--pixel-size));
+}
+
+@keyframes moveSprite {
+  from {
+    transform: translate3d(0px, 0, 0)
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
 
 
