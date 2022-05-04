@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {changeView, currentCharacter} from '../../Atoms/Atoms.jsx';
 import {useRecoilState} from 'recoil';
 import axios from 'axios';
+import Waterfall from '../Assets/SpriteSheets/waterfall2.png';
+
 
 const LoadScreen = () => {
 
@@ -40,16 +42,16 @@ const LoadScreen = () => {
   }
 
   return (
-    <div style={{height: '100vw', width: '100vw', background: 'blue'}}>
+    <div style={{height: '100vw', width: '100vw', backgroundSize: 'cover', backgroundImage: `url(${Waterfall}`}}>
       <div style={{border: '10px solid grey', padding: '30px', borderRadius: '25px', position: 'absolute', top: '25%', left: '25%', width: '50vw', height: '25vw', backgroundColor: 'black'}}>
       {charactersValue.map((value, index) => {
         return (
           <div>
-          <div key={value._id} style={{color: 'white'}}>Name: {value.name} Level: {value.level} Experience: {value.experience}</div>
-          <button onClick={() => {
+          <div key={value._id} style={{color: 'white', fontSize: '42px'}}>Name: {value.name} Level: {value.level} Experience: {value.experience}</div>
+          <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
             clickHandler(null, index);
           }}>Load Data</button>
-          <button onClick={() => {
+          <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
             clickHandler(value._id);
           }}>Delete Data</button>
           </div>
