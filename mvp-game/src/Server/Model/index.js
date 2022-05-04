@@ -13,6 +13,16 @@ const createData = async (params) => {
   }
 }
 
+const gainExp = async (params) => {
+  try {
+    db.collection('characters').findOneAndUpdate({
+      experience:
+    })
+  } catch (error) {
+    return error;
+  }
+}
+
 const deleteCharacter = async (params) => {
   console.log(params)
   try {
@@ -32,4 +42,5 @@ module.exports = {
   createData,
   retrieveCharacters,
   deleteCharacter,
+  gainExp,
 }

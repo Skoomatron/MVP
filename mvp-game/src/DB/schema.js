@@ -9,6 +9,7 @@ const characterData = new mongoose.Schema({
   experience: {type: Number, default: 0},
   health: {type: Number, default: 50},
   attack: {type: Number, default: 5},
+  color: {type: String, default: 'green'}
 })
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {changeView, characterName} from '../../Atoms/Atoms.jsx';
 import {useRecoilState} from 'recoil';
 import axios from 'axios';
+import Spritesheet from 'react-responsive-spritesheet';
 
 const NewGame = () => {
 
@@ -22,11 +23,12 @@ const NewGame = () => {
 
   const changeHandler = (event) => {
     const value = event.target.value;
+    console.log(event.key, 'this is the key')
     setName(value)
   }
 
   return (
-    <div style={{height: '100vw', width: '100vw', background: 'brown'}}>
+    <div style={{height: '100vw', width: '100vw', background: 'blue'}}>
       <form style={{position: 'absolute', top: '30%', left: '30%'}}>
         <label>
           <input type='text' placeholder='Enter Character Name' onChange={() => {
@@ -34,7 +36,8 @@ const NewGame = () => {
           }}/>
         </label>
       </form>
-      <button style={{position: 'absolute', top: '40%', left: '30%'}} onClick={() => {
+      <button style={{border: '10px solid grey', backgroundColor: 'black', color: 'white', fontSize: '24px',
+        fontWeight: 'bold', borderRadius: '25px', position: 'absolute', left: '45%', bottom: '30%', height: '10%', width: '20%'}} onClick={() => {
         clickHandler()
       }}>Start Game</button>
     </div>

@@ -21,16 +21,11 @@ const LoadScreen = () => {
     .catch((error) => {
       console.log(error, 'error in getCharacters')
     })
-    console.log(charactersValue)
   }
-
-
 
   const clickHandler = (id, index) => {
     if (id === null) {
-      console.log(index)
       setCurrentChar(charactersValue[index])
-      console.log(currentCharValue, 'current char')
       setView('battle')
     } else {
       axios.post('/delete', {_id: id})
@@ -38,7 +33,7 @@ const LoadScreen = () => {
         console.log('Character Deleted')
       })
       .catch((error) => {
-        console.log(error, 'Failed to Delete Character')
+        console.log('Failed to Delete Character')
       })
     }
     getCharacters();
@@ -48,10 +43,9 @@ const LoadScreen = () => {
     <div style={{height: '100vw', width: '100vw', background: 'blue'}}>
       <div style={{border: '10px solid grey', padding: '30px', borderRadius: '25px', position: 'absolute', top: '25%', left: '25%', width: '50vw', height: '25vw', backgroundColor: 'black'}}>
       {charactersValue.map((value, index) => {
-        console.log(value)
         return (
           <div>
-          <div key={index} style={{color: 'white'}}>Name: {value.name} Level: {value.level} Experience: {value.experience}</div>
+          <div key={value._id} style={{color: 'white'}}>Name: {value.name} Level: {value.level} Experience: {value.experience}</div>
           <button onClick={() => {
             clickHandler(null, index);
           }}>Load Data</button>

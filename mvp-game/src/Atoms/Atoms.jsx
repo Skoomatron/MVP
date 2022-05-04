@@ -14,3 +14,4 @@ export const currentCharacter =  atom({
   key: 'currentCharacter',
   default: {},
 })
+

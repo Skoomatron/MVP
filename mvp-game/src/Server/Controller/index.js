@@ -11,10 +11,21 @@ const create = async (req, res) => {
 }
 
 const deleteOne = async (req, res) => {
-  console.log(req, 'delete data')
   await model.deleteCharacter(req.body._id)
   .then((response) => {
     res.status(200).send('Character Deleted');
+  })
+  .catch((error) => {
+    res.status(404).send(error)
+  })
+}
+
+const gain = async (req, res) => {
+  console.log('here')
+  console.log(req, 'this is controller req')
+  await model.gainExp(req.body.experience)
+  .then((response) => {
+    res.status(200).send('Earned a boosted')
   })
   .catch((error) => {
     res.status(404).send(error)
@@ -36,4 +47,5 @@ module.exports = {
   create,
   retrieve,
   deleteOne,
+  gain,
 }
