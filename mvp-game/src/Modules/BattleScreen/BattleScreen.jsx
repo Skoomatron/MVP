@@ -5,9 +5,10 @@ import {GiCurvyKnife} from 'react-icons/gi';
 import {monsters} from '../Assets/assets.js';
 import axios from 'axios';
 import Sprites from '../Assets/SpriteSheets/chara6.png';
+import Orcs from '../Assets/SpriteSheets/orc2.png';
 import Cave from '../Assets/SpriteSheets/cave.png';
 import Forest from '../Assets/SpriteSheets/forest.png';
-import styled, {keyframes, css} from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 
 const BattleScreen = () => {
 
@@ -18,8 +19,16 @@ const BattleScreen = () => {
   const [playerHealthValue, setPlayerHealth] = useState(currentCharValue.health);
   const [enemyRatio, setEnemyRatio] = useState(1);
   const [playerRatio, setPlayerRatio] = useState(1);
+  const [modalValue, setModal] = useState('none');
+  const [toggleValue, setToggle] = useState('false');
+
+  const handleToggle = () => {
+    setToggle(!toggleValue);
+  }
 
   const attackButton = () => {
+    handleToggle()
+
     setEnemyHealth(enemyHealthValue - currentCharValue.attack);
     setPlayerHealth(playerHealthValue - monsters[0].level1[monsterIndex].attack);
 
@@ -46,7 +55,7 @@ const BattleScreen = () => {
         setEnemyRatio(1);
       }
     } else if (playerHealthValue <= 0) {
-      console.log('sucks to suck booooiiiii')
+      setModal('block')
     } else if (currentCharValue.experience >= 100) {
       let newAttack = currentCharValue.attack * 1.2;
       let newHealth = currentCharValue.health * 1.1;
@@ -58,46 +67,101 @@ const BattleScreen = () => {
         console.log('Level up lost to the void')
       })
     }
-    setView('battle')
+  }
+
+  const modalClick = () => {
+    setModal('none')
+    setView('load')
   }
 
 
-
   return (
-    <div style={{height: '100vw', width: '100vw', backgroundSize: 'cover', backgroundImage: `url(${Forest}`}}>
+    <div style={{
+      position: 'relative', height: '60vw',
+      width: '100vw', backgroundSize: 'cover',
+      backgroundImage: `url(${Forest}`}}>
 
-      <div style={{overflow: 'hidden', border: '10px solid grey', borderRadius: '25px', position: 'absolute', left: '5%', backgroundImage: `url(${Cave})`, width: '90vw', height: '30vw'}}>
-
-        <div style={{bottom: '5vw', right: '5vw', height: '30px', width: '400px', backgroundColor: 'black', border: '2px solid grey', color: 'white'}}>
-          Level: {currentCharValue.level} Attack: {Math.floor(currentCharValue.attack)} Health: {Math.floor(currentCharValue.health)} Experience: {currentCharValue.experience}
+        <div style={{
+          display: `${modalValue}`, height: '200px', border: '3px solid grey',
+          width: '444px', color: 'white', zIndex: '10', position: 'absolute', lineHeight: '200px',
+          backgroundColor: 'blue', top: '30%', left: '45%', fontSize: '42px',
+          justifyContent: 'center', textAlign: 'center', fontWeight: 'bold'}}>
+          You Have Ceased To Be
+          <button style={{
+            positions: 'absolute', bottom: '1%', left: '45%',
+            borderRadius: '25px', height: '50px', width: '100px',
+            color: 'black', fontWeight: 'bold', fontSize: '24px'}} onClick={() => {
+            modalClick();
+          }}>Exit</button>
         </div>
 
-        <div style={{zIndex: 2, position: 'absolute', bottom: '2%', right: '2%', backgroundColor: 'green', width: `${playerRatio * 40}%`, height: '20px' }}></div>
-        <div style={{position: 'absolute', bottom: '2%', border: '3px solid gray', right: '2%', backgroundColor: 'red', width: '40%', height: '20px' }}></div>
+      <div style={{
+        overflow: 'hidden', border: '10px solid grey',
+        borderRadius: '25px', position: 'absolute', left: '5%',
+        backgroundImage: `url(${Cave})`, width: '90vw', height: '30vw'}}>
 
-        <div style={{zIndex: 2, position: 'absolute', bottom: '2%', left: '2%', backgroundColor: 'green', width: `${enemyRatio * 40}%`, height: '20px' }}></div>
-        <div style={{position: 'absolute', bottom: '2%', border: '3px solid gray', left: '2%', backgroundColor: 'red', width: '40%', height: '20px' }}></div>
+        <div style={{
+          height: '70px', width: '95%', backgroundColor: 'black', borderRadius: '25px',
+          border: '2px solid grey', color: 'white', textWeight: 'bold', marginLeft: '2.5%',
+          textAlign: 'center', lineHeight: '70px', justifyContent: 'center', fontSize: '24px'}}>
+          Character [ {currentCharValue.name} ]
+          Level [ {currentCharValue.level} ]
+          Attack [ {Math.floor(currentCharValue.attack)} ]
+          Health [ {Math.floor(currentCharValue.health)} ]
+          Experience [ {currentCharValue.experience} ]
+        </div>
+
+        <div style={{
+          zIndex: 2, position: 'absolute', bottom: '2%',
+          right: '2%', backgroundColor: 'green', width: `${playerRatio * 40}%`,
+          height: '20px' }}></div>
+        <div style={{
+          position: 'absolute', bottom: '2%',
+          border: '3px solid gray', right: '2%', backgroundColor: 'red',
+          width: '40%', height: '20px' }}></div>
+
+        <div style={{
+          zIndex: 2, position: 'absolute', bottom: '2%',
+          left: '2%', backgroundColor: 'green', width: `${enemyRatio * 40}%`,
+          height: '20px' }}></div>
+          <div style={{
+            position: 'absolute', bottom: '2%', border: '3px solid gray',
+            left: '2%', backgroundColor: 'red', width: '40%', height: '20px' }}></div>
 
         <div onClick={() => {
           attackButton();
         }}
-        style={{position: 'absolute', bottom: '2%', right: '45%', height: '10%', width: '10%', backgroundColor: 'black', border: '3px solid grey', borderRadius: '25px'}}>
+        style={{
+          position: 'absolute', bottom: '2%', right: '45%',
+          height: '10%', width: '10%', backgroundColor: 'black',
+          border: '3px solid grey', borderRadius: '25px'}}>
+
           <GiCurvyKnife style={{
             color: 'red', position: 'absolute',
             left: '10%', bottom: '15%',
             height: '85%', width: '80%'}}/>
+
         </div>
       </div>
-      <div style={{borderRadius: '50px', backgroundColor: `${monsters[0].level1[monsterIndex].color}`, position: 'absolute', left: '10%', top: '30%', zIndex: '5', height: '10%', width: '10%'}}></div>
 
-      <button style={{border: '10px solid grey', backgroundColor: 'black', color: 'white', fontSize: '24px',
-        fontWeight: 'bold', borderRadius: '25px', position: 'absolute', left: '40%', bottom: '30%', height: '10%', width: '20%'}} onClick={() => {
+      <button style={{
+        border: '10px solid grey', backgroundColor: 'black',
+        color: 'white', fontSize: '24px', fontWeight: 'bold',
+        borderRadius: '25px', position: 'absolute', left: '45%',
+        bottom: '43%', height: '5%', width: '10%'}} onClick={() => {
           setView('title');
       }}>Flee</button>
 
+      <Monster>
+        <MonsterSheet style={{
+          backgroundImage: `url(${Orcs})`,}}></MonsterSheet>
+      </Monster>
+
       <Character>
-        <CharacterSheet style={{right: '10%', top: '30%', backgroundImage: `url(${Sprites})`}}></CharacterSheet>
+        <CharacterSheet style={{
+          backgroundImage: `url(${Sprites})`}}></CharacterSheet>
       </Character>
+
     </div>
   );
 }
@@ -114,6 +178,15 @@ to {
 }
 `;
 
+const attackAnimation = keyframes`
+  from {
+    transform: translate(0%, 0, 0)
+  }
+  to {
+    transform:  translate(100%, 0, 400px)
+  }
+`
+
 const Character = styled.div`
   width: calc(30px * ${pixelSize});
   height: calc(50px * ${pixelSize});
@@ -122,9 +195,8 @@ const Character = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   left: 80vw;
-  top: 10vw;
+  top: -3vw;
 `;
-// overflow: hidden;
 
 const spriteOptions = `1s steps(3) infinite`;
 
@@ -134,9 +206,34 @@ const CharacterSheet = styled.div`
   height: calc(360px * ${pixelSize});
   image-rendering: pixelated;
   background-size: cover;
+  position: absolute;
   background-repeat: no-repeat;
-  left: 0px;
-  top: -10em;
+  left: 0vw;
+  top: -9vw;
+`;
+
+const Monster = styled.div`
+  width: calc(30px * ${pixelSize});
+  height: calc(50px * ${pixelSize});
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  left: 10vw;
+  top: 12vw;
+`;
+// overflow: hidden;
+
+const MonsterSheet = styled.div`
+  animation: ${moveSprite} ${spriteOptions};
+  width: calc(360px * ${pixelSize});
+  height: calc(360px * ${pixelSize});
+  image-rendering: pixelated;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: -34vw;
+  top: -18vw;
 `;
 
 export default BattleScreen;

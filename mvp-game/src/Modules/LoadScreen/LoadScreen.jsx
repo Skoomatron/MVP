@@ -42,22 +42,34 @@ const LoadScreen = () => {
   }
 
   return (
-    <div style={{height: '100vw', width: '100vw', backgroundSize: 'cover', backgroundImage: `url(${Waterfall}`}}>
-      <div style={{border: '10px solid grey', padding: '30px', borderRadius: '25px', position: 'absolute', top: '25%', left: '25%', width: '50vw', height: '25vw', backgroundColor: 'black'}}>
-      {charactersValue.map((value, index) => {
-        return (
-          <div>
-          <div key={value._id} style={{color: 'white', fontSize: '42px'}}>Name: {value.name} Level: {value.level} Experience: {value.experience}</div>
-          <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
-            clickHandler(null, index);
-          }}>Load Data</button>
-          <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
-            clickHandler(value._id);
-          }}>Delete Data</button>
-          </div>
-        )
-      })}
-      </div>
+    <div style={{
+      display: 'flex', alignItems: 'center',
+      justifyContent: 'center', height: '60vw',
+      width: '100vw', backgroundSize: 'cover',
+      backgroundImage: `url(${Waterfall}`}}>
+
+        <div style={{
+          border: '10px solid grey', overflow: 'auto',
+          padding: '30px', borderRadius: '25px',
+          width: '50vw', height: '25vw',
+          backgroundColor: 'black'}}>
+        {charactersValue.map((value, index) => {
+          return (
+            <div>
+            <div key={value._id} style={{color: 'white', fontSize: '42px'}}>
+              Name: [ {value.name} ]
+              Level: [ {value.level} ]
+              Experience: [ {value.experience} ]</div>
+            <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
+              clickHandler(null, index);
+            }}>Load Data</button>
+            <button style={{height: '40px', width: '200px', fontSize: '24px', borderRadius: '25px'}} onClick={() => {
+              clickHandler(value._id);
+            }}>Delete Data</button>
+            </div>
+          )
+        })}
+        </div>
     </div>
   );
 }

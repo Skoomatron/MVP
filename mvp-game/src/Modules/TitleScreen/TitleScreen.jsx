@@ -2,7 +2,7 @@ import React from 'react';
 import {changeView} from '../../Atoms/Atoms.jsx';
 import {useRecoilState} from 'recoil';
 import Waterfall from '../Assets/SpriteSheets/waterfall.png';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
 
 
 
@@ -20,26 +20,33 @@ const TitleScreen = () => {
 
 
   return (
-    <div style={{height: '100vw', width: '100vw', backgroundSize: 'cover', backgroundImage: `url(${Waterfall})`}}>
+    <div style={{
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      height: '60vw', width: '100vw', backgroundSize: 'cover',
+      backgroundImage: `url(${Waterfall})`, flexDirection: 'column'}}>
+
       <div style={{
-        border: '10px solid grey', borderRadius: '25px', textAlign: 'center', lineHeight: '100px', justifyContent: 'center',
+        border: '10px solid grey', borderRadius: '25px', textAlign: 'center',
+        lineHeight: '100px', justifyContent: 'center',
         backgroundColor: 'black', width: '800px', height: '100px',
         fontSize: '50px', color: 'white', fontWeigt: 'bold',
-        position: 'relative', top: '10vw', left: '40vw'}}>
-        It Ain't Much, But It's A Game
+        }}>
+        Fun: The Game
       </div>
 
         <button style={{border: '10px solid grey', backgroundColor: 'black', color: 'white', fontSize: '24px',
-        fontWeight: 'bold', borderRadius: '25px', position: 'absolute', left: '48%', top: '30%', height: '5%', width: '10%'}} onClick={(event) => {
+        fontWeight: 'bold', borderRadius: '25px', height: '5%', width: '10%'}} onClick={(event) => {
           clickHandler(event.target.innerText);
         }}>New Game</button>
 
         <button style={{border: '10px solid grey', backgroundColor: 'black', color: 'white', fontSize: '24px',
-        fontWeight: 'bold', borderRadius: '25px', position: 'absolute', left: '48%', top: '35%', height: '5%', width: '10%'}} onClick={() => {
+        fontWeight: 'bold', borderRadius: '25px', height: '5%', width: '10%'}} onClick={() => {
           clickHandler(event.target.innerText);
         }}>Load Game</button>
     </div>
   );
 }
+
+
 
 export default TitleScreen;
